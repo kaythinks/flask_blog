@@ -1,0 +1,147 @@
+<!-- DEMO PAGE -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<style>
+
+/* Remove the underlines in a href tag */
+a  {
+      text-decoration:none;
+   }
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>Welcome to the Flask Blog</h2>
+  <h4 style="color:black;"> <a href="/login">Login</a> | <a href="/register">Register</a> | <a href="/admin">Admin</a> | <a href="/">Home</a> {% if session['auth'] %}|  <a href="/logout">Logout</a> {% endif %}</h4>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+       <h3 style="color:green;">Create Blog !</h3>
+        <div class="info-form">
+            <form class="form-inlin justify-content-center" action="/create-blog" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="sr-only">Title</label>
+                    <input type="text" class="form-control" name="title" placeholder="Enter Title" required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Description</label>
+                    <input type="text" class="form-control" name="description" placeholder="Enter Description" required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Image</label>
+                    <input type="file" class="form-control" name="image" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Body</label>
+                    <textarea name="body" class="form-control" rows="5">Enter Body...</textarea>
+                </div>
+                <button type="submit" class="btn btn-success ">okay, go!</button>
+            </form>
+        </div>
+        <br>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>About Me</h2>
+      <img src="https://avatars1.githubusercontent.com/u/27997819?s=460&v=4" class="fakeimg" height="auto">
+      <p>A software developer who loves to automate things.</p>
+    </div>
+    <div class="card">
+      <h3>Popular Post</h3>
+      <div class="fakeimg">Image URL</div><br>
+      <div class="fakeimg">Image URL</div><br>
+      <div class="fakeimg">Image URL</div>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+      <p>@kaythinks on <a href="https://github.com/kaythinks">Github</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Flask Blog &copy; {{ year }}</h2>
+</div>
+
+</body>
+</html>
